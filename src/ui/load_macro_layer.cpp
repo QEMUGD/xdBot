@@ -215,7 +215,7 @@ void LoadMacroLayer::onImportMacro(CCObject*) {
 }
 
 bool LoadMacroLayer::init(geode::Popup* layer, geode::Popup* layer2, bool autosaves) {
-	if (!geode::Popup::init(385, 291)) return false;
+	if (!geode::Popup::init(385, 291, Utils::getTexture().c_str())) return false;
 
 	#ifdef GEODE_IS_ANDROID
 	invertSort = true;
