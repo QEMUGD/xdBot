@@ -35,7 +35,7 @@ const std::string buttonIDs[6] = {
 #define STATIC_CREATE(class, width, height) \
     static class* create() { \
         class* ret = new class(); \
-        if (ret->init(width, height)) { \
+        if (static_cast<geode::Popup*>(ret)->init(width, height)) { \
             ret->autorelease(); \
             return ret; \
         } \
