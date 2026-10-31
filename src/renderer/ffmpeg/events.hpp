@@ -13,25 +13,25 @@ namespace impl {
     // Geode 5 uses Event V2. Keep the FFmpeg API bridge synchronous and pass
     // mutable outputs by reference so the receiving FFmpeg API mod can fill them.
     struct CreateRecorderEvent
-        : geode::Event<CreateRecorderEvent, bool(void*&)> {};
+        : geode::ThreadSafeEvent<CreateRecorderEvent, bool(void*&)> {};
 
     struct DeleteRecorderEvent
-        : geode::Event<DeleteRecorderEvent, bool(void*)> {};
+        : geode::ThreadSafeEvent<DeleteRecorderEvent, bool(void*)> {};
 
     struct InitRecorderEvent
-        : geode::Event<InitRecorderEvent, bool(void*, RenderSettings const&, geode::Result<>&)> {};
+        : geode::ThreadSafeEvent<InitRecorderEvent, bool(void*, RenderSettings const&, geode::Result<>&)> {};
 
     struct StopRecorderEvent
-        : geode::Event<StopRecorderEvent, bool(void*)> {};
+        : geode::ThreadSafeEvent<StopRecorderEvent, bool(void*)> {};
 
     struct GetWriteFrameFunctionEvent
-        : geode::Event<GetWriteFrameFunctionEvent, bool(writeFrame_t&)> {};
+        : geode::ThreadSafeEvent<GetWriteFrameFunctionEvent, bool(writeFrame_t&)> {};
 
     struct CodecRecorderEvent
-        : geode::Event<CodecRecorderEvent, bool(std::vector<std::string>&)> {};
+        : geode::ThreadSafeEvent<CodecRecorderEvent, bool(std::vector<std::string>&)> {};
 
     struct MixVideoAudioEvent
-        : geode::Event<MixVideoAudioEvent, bool(
+        : geode::ThreadSafeEvent<MixVideoAudioEvent, bool(
             std::filesystem::path const&,
             std::filesystem::path const&,
             std::filesystem::path const&,
@@ -39,7 +39,7 @@ namespace impl {
         )> {};
 
     struct MixVideoRawEvent
-        : geode::Event<MixVideoRawEvent, bool(
+        : geode::ThreadSafeEvent<MixVideoRawEvent, bool(
             std::filesystem::path const&,
             std::vector<float> const&,
             std::filesystem::path const&,
